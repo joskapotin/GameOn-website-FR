@@ -121,6 +121,13 @@ main {
     text-align: left;
 }
 
+@media screen and (max-width:992px) {
+    main {
+        padding: 0;
+        margin: 0;
+    }
+}
+
 .modal-btn {
     font-size: 145%;
     background: #fe142f;
