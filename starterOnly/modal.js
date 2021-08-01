@@ -42,24 +42,18 @@ const submitBtn = form.submit;
 
 // Display or hide error messages
 // Select the parent and set the attribut "data-error-visible"
-function errorVisible(e, value) {
+const errorVisible = (e, value) => {
   e.parentNode.dataset.errorVisible = value;
-}
+};
 
 // email validation
-function validateEmail(item) {
-  // regular expression found here http://emailregex.com/
-  const mailformat = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-
-  // if email match regex return true else return false
-  if (item.value.match(mailformat)) {
-    return true;
-  }
-  return false;
-}
+// regular expression found here http://emailregex.com/
+const mailformat = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+// if email match regex return true else return false
+const validateEmail = (item) => item.value.match(mailformat);
 
 // location validation
-function validateLocation(items) {
+const validateLocation = (items) => {
   // will be set to true if there is a location checked
   let locationIsValid = false;
 
@@ -71,19 +65,16 @@ function validateLocation(items) {
     }
   });
 
-  // // if locationIsValid is true return true otherwise return false
-  if (locationIsValid === true) {
-    return true;
-  }
-  return false;
-}
+  // return locationIsValid
+  return locationIsValid;
+};
 
 // validation
-function validate() {
+const validate = () => {
   // will be set to false if there is any invalid input
   let formIsValid = true;
 
-  // lets use html5 validation API for those input
+  // let's use html5 validation API for those inputs
   const inputs = [prenom, nom, birthdate, quantity, cgu];
 
   inputs.forEach((input) => {
@@ -98,6 +89,7 @@ function validate() {
   });
 
   // check if the email is valid
+  // if not set formIsValid to false
   if (validateEmail(email)) {
     errorVisible(email, 'false');
   } else {
@@ -106,6 +98,7 @@ function validate() {
   }
 
   // check if alocation is selected
+  // if not set formIsValid to false
   if (validateLocation(locations)) {
     errorVisible(locations[0], 'false');
   } else {
@@ -113,13 +106,13 @@ function validate() {
     formIsValid = false;
   }
 
-  // check if formIsValid and decide what to do
+  // check formIsValid and decide what to do
   if (formIsValid === true) {
     console.log('form is valid');
   } else {
     console.log('form not valid');
   }
-}
+};
 
 // prevent the browser from showing default error
 // the html5 validation triggers on click not on submit, so we need to prevent the default event
