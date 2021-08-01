@@ -40,7 +40,8 @@ const locations = form.location;
 const cgu = form.checkbox1;
 const submitBtn = form.submit;
 
-// data-error-visible toggle function
+// Display or hide error messages
+// Select the parent and set the attribut "data-error-visible"
 function errorVisible(e, value) {
   e.parentNode.dataset.errorVisible = value;
 }
@@ -62,14 +63,15 @@ function validateLocation(items) {
   // will be set to true if there is a location checked
   let locationIsValid = false;
 
-  // loop through the location
+  // loop through the items
+  // if one is checked return true
   items.forEach((item) => {
     if (item.checked) {
       locationIsValid = true;
     }
   });
 
-  // if there is a location checked return true otherwise return false
+  // // if locationIsValid is true return true otherwise return false
   if (locationIsValid === true) {
     return true;
   }
