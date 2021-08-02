@@ -29,10 +29,21 @@ function closeModal() {
 // close modal event
 closeModalBtn.addEventListener('click', closeModal);
 
+/*
+FORM VALIDATION SECTION
+*/
+
 // set some variables
-// we need the form and the submit button of that form
+// we need the form and the inputs we need to check
 const form = document.forms.reserve;
-const submitBtn = form.submit;
+const {
+  first, last, email, birthdate, quantity, checkbox1, submit,
+} = form;
+const locations = form.location;
+
+// we also need a variable that will be our form validation token
+// if an input is not valid we update this variable to false
+let formIsValid = true;
 
 // display or hide error messages function
 // Select the parent and set a value to true or false to the attribut "data-error-visible"
@@ -41,76 +52,65 @@ const errorVisible = (e, value) => {
   e.parentNode.dataset.errorVisible = value;
 };
 
+// html5 validation API function
+const htmlValidation = (items) => {
+  items.forEach((item) => {
+    // if an item is not valide set data-error-visible to true and set formIsValid to false
+    // else set data-error-visible to false
+    if (item.checkValidity()) {
+      errorVisible(item, 'false');
+    } else {
+      errorVisible(item, 'true');
+      formIsValid = false;
+    }
+  });
+};
+
 // email validation function
 // regular expression found here http://emailregex.com/
 const mailformat = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 // if email match regex return true else return false
-const validateEmail = (item) => item.value.match(mailformat);
+const validateEmail = (item) => {
+  if (mailformat.test(item.value)) {
+    errorVisible(item, 'false');
+  } else {
+    errorVisible(item, 'true');
+    formIsValid = false;
+  }
+};
 
 // location validation function
 const validateLocation = (items) => {
-  // will be set to true if there is a location checked
+  // set a validation token for this function and default false
   let locationIsValid = false;
-
-  // loop through the items
-  // if one is checked set locationIsValid to true
+  // loop through all the items and if one is checked set our token (locationIsValid) to true
   items.forEach((item) => {
     if (item.checked) {
       locationIsValid = true;
     }
   });
 
-  // return locationIsValid
-  return locationIsValid;
+  // if our token is true set data-error-visible to false
+  // else set data-error-visible to true and the form validation token (formIsValid) to false
+  if (locationIsValid === true) {
+    errorVisible(items[0], 'false');
+  } else {
+    errorVisible(items[0], 'true');
+    formIsValid = false;
+  }
 };
 
 // form validation function
 const validate = () => {
-  // store the inputs that need validation
-  const prenom = form.first;
-  const nom = form.last;
-  const { email } = form;
-  const { birthdate } = form;
-  const { quantity } = form;
-  const locations = form.location;
-  const cgu = form.checkbox1;
-
-  // will be set to false if there is any invalid input
-  // will be read at the end
-  let formIsValid = true;
-
   // let's use html5 validation API for those inputs
-  const inputs = [prenom, nom, birthdate, quantity, cgu];
-  inputs.forEach((input) => {
-    // if is not valide set data-error-visible to true and set formIsValid to false
-    // else set data-error-visible to false
-    if (input.checkValidity()) {
-      errorVisible(input, 'false');
-    } else {
-      errorVisible(input, 'true');
-      formIsValid = false;
-    }
-  });
+  const inputs = [first, last, birthdate, quantity, checkbox1];
+  htmlValidation(inputs);
 
   // check if the email is valid
-  // if is not valide set data-error-visible to true and set formIsValid to false
-  // else set data-error-visible to false
-  if (validateEmail(email)) {
-    errorVisible(email, 'false');
-  } else {
-    errorVisible(email, 'true');
-    formIsValid = false;
-  }
+  validateEmail(email);
 
   // check if a location is selected
-  // if is not valide set data-error-visible to true and set formIsValid to false
-  // else set data-error-visible to false
-  if (validateLocation(locations)) {
-    errorVisible(locations[0], 'false');
-  } else {
-    errorVisible(locations[0], 'true');
-    formIsValid = false;
-  }
+  validateLocation(locations);
 
   // check formIsValid and decide what to do
   if (formIsValid === true) {
@@ -122,7 +122,7 @@ const validate = () => {
 
 // prevent the browser from showing default error
 // the html5 validation triggers on click not on submit, so we need to prevent the default event
-submitBtn.addEventListener('click', (e) => {
+submit.addEventListener('click', (e) => {
   e.preventDefault();
   validate();
 });
