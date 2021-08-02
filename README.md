@@ -2,6 +2,11 @@
 
 Vous avez récemment été embauché comme développeur Front-End junior dans une PME, GameOn, spécialisée dans les conférences et les concours de jeux. Vous avez fait du shadowing de votre développeur principal, Erika, pour suivre son travail au quotidien.
 
+<figure style="text-align: center">
+<img src="mission/logo.png" alt="logo de GameOn">
+<figcaption>Logo de GameOn</figcaption>
+</figure>
+
 Un matin, vous recevez le courriel suivant :
 ***
 
