@@ -33,8 +33,7 @@ closeModalBtn.addEventListener('click', closeModal);
 FORM VALIDATION SECTION
 */
 
-// set some variables
-// we need the form and the inputs we need to check
+// select the form
 const form = document.forms.reserve;
 
 // we also need a variable that will be our form validation token
