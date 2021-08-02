@@ -38,7 +38,7 @@ FORM VALIDATION SECTION
 const form = document.forms.reserve;
 
 // we also need a variable that will be our form validation token
-// if an input is not valid we update this variable to false
+// if any input is not valid we update this variable to false
 let formIsValid = true;
 
 // display or hide error messages function
@@ -107,9 +107,8 @@ const submitForm = () => {
 const validate = () => {
   // store the inputs that we need to validate in const
   const {
-    first, last, email, birthdate, quantity, checkbox1,
+    first, last, email, birthdate, quantity, location, checkbox1,
   } = form;
-  const locations = form.location;
 
   // let's use html5 validation API for those inputs
   const inputs = [first, last, birthdate, quantity, checkbox1];
@@ -119,7 +118,7 @@ const validate = () => {
   validateEmail(email);
 
   // check if a location is selected
-  validateLocation(locations);
+  validateLocation(location);
 
   // check formIsValid and decide what to do
   if (formIsValid === true) {
