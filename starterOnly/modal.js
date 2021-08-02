@@ -52,28 +52,31 @@ const errorVisible = (element, value) => {
 // html5 validation API function
 const htmlValidation = (elements) => {
   elements.forEach((element) => {
-    // if an element is not valide set data-error-visible to true and set formIsValid to false
-    // else set data-error-visible to false
+    // if an element is valide set data-error-visible to false
     if (element.checkValidity()) {
-      errorVisible(element, 'false');
-    } else {
-      errorVisible(element, 'true');
-      formIsValid = false;
+      return errorVisible(element, 'false');
     }
+
+    // set the form validation token (formIsValid) to false
+    formIsValid = false;
+    // and set data-error-visible to true
+    return errorVisible(element, 'true');
   });
 };
 
 // email validation function
 // regular expression found here http://emailregex.com/
 const mailformat = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-// if email match regex return true else return false
+// if email match regex set data-error-visible to false
 const validateEmail = (element) => {
   if (mailformat.test(element.value)) {
-    errorVisible(element, 'false');
-  } else {
-    errorVisible(element, 'true');
-    formIsValid = false;
+    return errorVisible(element, 'false');
   }
+
+  // set the form validation token (formIsValid) to false
+  formIsValid = false;
+  // and set data-error-visible to true
+  return errorVisible(element, 'true');
 };
 
 // location validation function
@@ -88,23 +91,27 @@ const validateLocation = (elements) => {
   });
 
   // if our token is true set data-error-visible to false
-  // else set data-error-visible to true and the form validation token (formIsValid) to false
   if (locationIsValid === true) {
-    errorVisible(elements[0], 'false');
-  } else {
-    errorVisible(elements[0], 'true');
-    formIsValid = false;
+    return errorVisible(elements[0], 'false');
   }
+
+  // set the form validation token (formIsValid) to false
+  formIsValid = false;
+  // and set data-error-visible to true
+  return errorVisible(elements[0], 'true');
 };
 
 // submit form function
 const submitForm = () => {
   console.log('form is valid');
-  form.submit();
+  // form.submit();
 };
 
 // form validation function
 const validate = () => {
+  // first we need to reset our token
+  formIsValid = true;
+
   // store the inputs that we need to validate in const
   const {
     first, last, email, birthdate, quantity, location, checkbox1,
@@ -120,12 +127,14 @@ const validate = () => {
   // check if a location is selected
   validateLocation(location);
 
-  // check formIsValid and decide what to do
-  if (formIsValid === true) {
-    submitForm();
-  } else {
+  // if formIsValid is false stop the function
+  if (formIsValid === false) {
     console.log('form not valid');
+    return false;
   }
+
+  // if we got here it means that ou form is valid so we can submit
+  return submitForm();
 };
 
 // prevent the browser from showing default error
