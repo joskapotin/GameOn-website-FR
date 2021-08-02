@@ -36,10 +36,6 @@ FORM VALIDATION SECTION
 // set some variables
 // we need the form and the inputs we need to check
 const form = document.forms.reserve;
-const {
-  first, last, email, birthdate, quantity, checkbox1, submit,
-} = form;
-const locations = form.location;
 
 // we also need a variable that will be our form validation token
 // if an input is not valid we update this variable to false
@@ -101,8 +97,20 @@ const validateLocation = (elements) => {
   }
 };
 
+// submit form function
+const submitForm = () => {
+  console.log('form is valid');
+  form.submit();
+};
+
 // form validation function
 const validate = () => {
+  // store the inputs that we need to validate in const
+  const {
+    first, last, email, birthdate, quantity, checkbox1,
+  } = form;
+  const locations = form.location;
+
   // let's use html5 validation API for those inputs
   const inputs = [first, last, birthdate, quantity, checkbox1];
   htmlValidation(inputs);
@@ -115,7 +123,7 @@ const validate = () => {
 
   // check formIsValid and decide what to do
   if (formIsValid === true) {
-    console.log('form is valid');
+    submitForm();
   } else {
     console.log('form not valid');
   }
@@ -123,7 +131,7 @@ const validate = () => {
 
 // prevent the browser from showing default error
 // the html5 validation triggers on click not on submit, so we need to prevent the default event
-submit.addEventListener('click', (e) => {
+form.btnSubmit.addEventListener('click', (e) => {
   e.preventDefault();
   validate();
 });
