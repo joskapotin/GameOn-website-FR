@@ -48,19 +48,20 @@ let formIsValid = true;
 // display or hide error messages function
 // Select the parent and set a value to true or false to the attribut "data-error-visible"
 // The CSS handle the display
-const errorVisible = (e, value) => {
-  e.parentNode.dataset.errorVisible = value;
+const errorVisible = (element, value) => {
+  const el = element;
+  el.parentNode.dataset.errorVisible = value;
 };
 
 // html5 validation API function
-const htmlValidation = (items) => {
-  items.forEach((item) => {
-    // if an item is not valide set data-error-visible to true and set formIsValid to false
+const htmlValidation = (elements) => {
+  elements.forEach((element) => {
+    // if an element is not valide set data-error-visible to true and set formIsValid to false
     // else set data-error-visible to false
-    if (item.checkValidity()) {
-      errorVisible(item, 'false');
+    if (element.checkValidity()) {
+      errorVisible(element, 'false');
     } else {
-      errorVisible(item, 'true');
+      errorVisible(element, 'true');
       formIsValid = false;
     }
   });
@@ -70,22 +71,22 @@ const htmlValidation = (items) => {
 // regular expression found here http://emailregex.com/
 const mailformat = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 // if email match regex return true else return false
-const validateEmail = (item) => {
-  if (mailformat.test(item.value)) {
-    errorVisible(item, 'false');
+const validateEmail = (element) => {
+  if (mailformat.test(element.value)) {
+    errorVisible(element, 'false');
   } else {
-    errorVisible(item, 'true');
+    errorVisible(element, 'true');
     formIsValid = false;
   }
 };
 
 // location validation function
-const validateLocation = (items) => {
+const validateLocation = (elements) => {
   // set a validation token for this function and default false
   let locationIsValid = false;
-  // loop through all the items and if one is checked set our token (locationIsValid) to true
-  items.forEach((item) => {
-    if (item.checked) {
+  // loop through all the elements and if one is checked set our token (locationIsValid) to true
+  elements.forEach((element) => {
+    if (element.checked) {
       locationIsValid = true;
     }
   });
@@ -93,9 +94,9 @@ const validateLocation = (items) => {
   // if our token is true set data-error-visible to false
   // else set data-error-visible to true and the form validation token (formIsValid) to false
   if (locationIsValid === true) {
-    errorVisible(items[0], 'false');
+    errorVisible(elements[0], 'false');
   } else {
-    errorVisible(items[0], 'true');
+    errorVisible(elements[0], 'true');
     formIsValid = false;
   }
 };
