@@ -178,7 +178,7 @@ main {
 .btn-signup {
   font-size: 1.3rem;
   grid-column: 1/2;
-  margin: 59px 67px 51px;
+  margin: auto auto 51px;
   outline: 0;
   padding: 15px 23px;
 }
