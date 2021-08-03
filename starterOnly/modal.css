@@ -463,7 +463,10 @@ input[data-error]::after {
 }
 
 .confirmation-message {
+  display: grid;
   grid-area: modal-body;
+  grid-template-areas: "message";
+  height: 100%;
   margin: auto;
   opacity: 0;
   text-align: center;
@@ -471,9 +474,16 @@ input[data-error]::after {
   transition: opacity 200ms linear, transform 200ms ease;
 }
 
+.confirmation-message p {
+  align-self: center;
+  grid-area: message;
+}
+
 .confirmation-message button {
+  align-self: bottom;
   display: block;
-  margin: 2rem auto;
+  grid-area: message;
+  margin: auto auto 2rem;
 }
 
 .confirmation-message.show-message {
