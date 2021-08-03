@@ -10,8 +10,11 @@ function editNav() {
 // DOM Elements
 const modalbg = document.querySelector('.bground');
 const modalBtn = document.querySelectorAll('.modal-btn');
-const formData = document.querySelectorAll('.formData');
-const closeModalBtn = document.querySelector('.close');
+const hamburger = document.querySelector('.hamburger');
+const closeModalBtn = document.querySelector('.close-modal');
+
+// Responsive menu
+hamburger.addEventListener('click', editNav);
 
 // launch modal form
 function launchModal() {
@@ -103,7 +106,19 @@ const validateLocation = (elements) => {
 // submit form function
 const submitForm = () => {
   console.log('form is valid');
-  // form.submit();
+  form.submit();
+};
+
+// confirmation message function
+const confirmation = () => {
+  // hide form and show confirmation message
+  form.style.opacity = 0;
+  const confirmationMessage = document.querySelector('.confirmation-message');
+  confirmationMessage.classList.add('show-message');
+
+  // on click execute submitForm function
+  const confirmSubmit = document.querySelector('.confirm-submit');
+  confirmSubmit.addEventListener('click', submitForm);
 };
 
 // form validation function
@@ -133,7 +148,7 @@ const validate = () => {
   }
 
   // if we got here it means that ou form is valid so we can submit
-  return submitForm();
+  return confirmation();
 };
 
 // prevent the browser from showing default error

@@ -16,13 +16,12 @@
             <img alt="logo" src="Logo.png" />
         </div>
         <div class="main-navbar">
-
             <a href="#" class="active"><span>Accueil</span></a>
             <a href="#"><span>Détails de l'évènement</span></a>
             <a href="#"><span>À propos</span></a>
             <a href="#"><span>Contact</span></a>
             <a href="#"><span>Évènements passés</span></a>
-            <a href="javascript:void(0);" class="icon" onclick="editNav()">
+            <a href="#" class="icon hamburger">
                 <i class="fa fa-bars"></i>
             </a>
         </div>
@@ -31,7 +30,7 @@
         <div class="hero-section">
             <div class="hero-content">
                 <h1 class="hero-headline">
-                    Marathon national de jeux vidéos
+                    <span>Marathon national</span> de jeux vidéos
                 </h1>
                 <p class="hero-text">
                     Vous aimez jouer ? Notre prochain évènement gaming est ouvert
@@ -51,9 +50,9 @@
 
         <div class="bground">
             <div class="content">
-                <span class="close"></span>
+                <span class="close close-modal"></span>
                 <div class="modal-body">
-                    <form name="reserve" action="index.html" method="get" onsubmit="return validate();">
+                    <form name="reserve" action="index.html" method="get">
                         <div class="formData" data-error="Veuillez entrer 2 caractères ou plus pour le champ du prénom." data-error-visible="false">
                             <label for="first">Prénom</label><br>
                             <input class="text-control" type="text" id="first" name="first" minlength="2" required /><br>
@@ -118,6 +117,10 @@
                         </div>
                         <input class="btn-submit button" type="submit" value="C'est parti" name="btnSubmit" />
                     </form>
+                    <div class="confirmation-message">
+                        <p>Merci ! Votre réservation a été reçue.</p>
+                        <button class="confirm-submit">Fermer</button>
+                    </div>
                 </div>
             </div>
         </div>
