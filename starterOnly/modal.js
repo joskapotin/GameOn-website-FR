@@ -46,23 +46,23 @@ let formIsValid = true;
 // display or hide error messages function
 // Select the parent and set a value to true or false to the attribut "data-error-visible"
 // The CSS handle the display
-const errorVisible = (element, value) => {
+const toggleErrorMsg = (element, value) => {
   const el = element;
   el.parentNode.dataset.errorVisible = value;
 };
 
 // html5 validation API function
-const htmlValidation = (elements) => {
+const validateHtml = (elements) => {
   elements.forEach((element) => {
     // if an element is valide set data-error-visible to false
     if (element.checkValidity()) {
-      return errorVisible(element, 'false');
+      return toggleErrorMsg(element, 'false');
     }
 
     // set the form validation token (formIsValid) to false
     formIsValid = false;
     // and set data-error-visible to true
-    return errorVisible(element, 'true');
+    return toggleErrorMsg(element, 'true');
   });
 };
 
@@ -72,13 +72,13 @@ const mailformat = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@
 // if email match regex set data-error-visible to false
 const validateEmail = (element) => {
   if (mailformat.test(element.value)) {
-    return errorVisible(element, 'false');
+    return toggleErrorMsg(element, 'false');
   }
 
   // set the form validation token (formIsValid) to false
   formIsValid = false;
   // and set data-error-visible to true
-  return errorVisible(element, 'true');
+  return toggleErrorMsg(element, 'true');
 };
 
 // location validation function
@@ -94,13 +94,13 @@ const validateLocation = (elements) => {
 
   // if our token is true set data-error-visible to false
   if (locationIsValid === true) {
-    return errorVisible(elements[0], 'false');
+    return toggleErrorMsg(elements[0], 'false');
   }
 
   // set the form validation token (formIsValid) to false
   formIsValid = false;
   // and set data-error-visible to true
-  return errorVisible(elements[0], 'true');
+  return toggleErrorMsg(elements[0], 'true');
 };
 
 // submit form function
@@ -110,15 +110,15 @@ const submitForm = () => {
 };
 
 // confirmation message function
-const confirmation = () => {
+const confirmSubmit = () => {
   // hide form and show confirmation message
   form.style.opacity = 0;
   const confirmationMessage = document.querySelector('.confirmation-message');
   confirmationMessage.classList.add('show-message');
 
   // on click execute submitForm function
-  const confirmSubmit = document.querySelector('.confirm-submit');
-  confirmSubmit.addEventListener('click', submitForm);
+  const confirmSubmitBtn = document.querySelector('.confirm-submit');
+  confirmSubmitBtn.addEventListener('click', submitForm);
 };
 
 // form validation function
@@ -133,7 +133,7 @@ const validate = () => {
 
   // let's use html5 validation API for those inputs
   const inputs = [first, last, birthdate, quantity, checkbox1];
-  htmlValidation(inputs);
+  validateHtml(inputs);
 
   // check if the email is valid
   validateEmail(email);
@@ -148,7 +148,7 @@ const validate = () => {
   }
 
   // if we got here it means that ou form is valid so we can submit
-  return confirmation();
+  return confirmSubmit();
 };
 
 // prevent the browser from showing default error
