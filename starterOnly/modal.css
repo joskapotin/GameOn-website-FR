@@ -468,10 +468,7 @@ input[data-error]::after {
   grid-template-areas: "message";
   height: 100%;
   margin: auto;
-  opacity: 0;
   text-align: center;
-  transform: scale(0);
-  transition: opacity 200ms linear, transform 200ms ease;
 }
 
 .confirmation-message p {
@@ -486,9 +483,16 @@ input[data-error]::after {
   margin: auto auto 2rem;
 }
 
-.confirmation-message.show-message {
+.show {
   opacity: 1;
   transform: scale(1);
+  transition: opacity 200ms linear, transform 200ms ease;
+}
+
+.hide {
+  opacity: 0;
+  transform: scale(0);
+  transition: opacity 200ms linear, transform 200ms ease;
 }
 
 @keyframes modalopen {
