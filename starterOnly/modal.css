@@ -14,13 +14,13 @@
 /* Landing Page */
 
 body {
-  background: var(--color-body);
   display: flex;
   flex-direction: column;
+  max-width: 1300px;
+  margin: 0 auto;
+  background: var(--color-body);
   font-family: var(--font-default);
   font-size: 18px;
-  margin: 0 auto;
-  max-width: 1300px;
 }
 
 p {
@@ -30,15 +30,15 @@ p {
 
 button,
 .button {
-  background: #fe142f;
-  border: 0;
-  border-radius: 0.5rem;
-  color: #fff;
-  cursor: pointer;
   display: block;
-  font-size: 1rem;
   margin-top: 0.5em;
   padding: 0.75rem 2.5rem;
+  border: 0;
+  border-radius: 0.5rem;
+  background: #fe142f;
+  color: #fff;
+  font-size: 1rem;
+  cursor: pointer;
 }
 
 button:hover,
@@ -47,32 +47,32 @@ button:hover,
 }
 
 .topnav {
-  align-items: flex-start;
   display: flex;
   flex-wrap: wrap;
+  align-items: flex-start;
   margin: 3.5%;
   overflow: hidden;
 }
 
 .topnav a {
-  color: #000;
   display: block;
-  font-family: Roboto, sans-serif;
-  font-size: 20px;
   margin: 2px;
   padding: 12px;
+  color: #000;
+  font-family: Roboto, sans-serif;
+  font-size: 20px;
   text-decoration: none;
 }
 
 .topnav a:hover {
-  background-color: #f00;
   border-radius: 15px;
+  background-color: #f00;
   color: #fff;
 }
 
 .topnav .active {
-  background-color: #f00;
   border-radius: 15px;
+  background-color: #f00;
   color: #fff;
 }
 
@@ -92,8 +92,8 @@ button:hover,
 
 @media screen and (max-width: 992px) {
   .topnav {
-    align-items: flex-start;
     display: grid;
+    align-items: flex-start;
     grid-template-areas: "topnav";
   }
 
@@ -102,11 +102,11 @@ button:hover,
   }
 
   .topnav .icon {
-    align-self: flex-end;
     display: block;
+    align-self: flex-end;
     order: -1;
-    text-align: center;
     width: 44px;
+    text-align: center;
   }
 
   .topnav.responsive a {
@@ -119,14 +119,14 @@ button:hover,
 }
 
 main {
+  margin: 1px 20px 15px;
+  padding-top: 0.5vw;
+  padding-right: 2vw;
+  padding-left: 2vw;
   border-radius: 2rem;
   color: #000;
   font-size: 130%;
   font-weight: bolder;
-  margin: 1px 20px 15px;
-  padding-left: 2vw;
-  padding-right: 2vw;
-  padding-top: 0.5vw;
   text-align: left;
 }
 
@@ -138,30 +138,30 @@ main {
 }
 
 .hero-section {
+  display: grid;
+  min-height: 93vh;
+  margin-bottom: 10px;
+  grid-template-columns: 1fr;
   border-radius: 10px;
   box-shadow: 0 2px 7px 2px rgba(0, 0, 0, 0.2);
-  display: grid;
-  grid-template-areas: "hero";
-  grid-template-columns: 1fr;
-  margin-bottom: 10px;
-  min-height: 93vh;
   overflow: hidden;
+  grid-template-areas: "hero";
 }
 
 .hero-content {
-  color: #fff;
   display: grid;
-  grid-area: hero;
-  grid-template-columns: 400px 1fr 1fr;
-  min-width: 0;
   position: relative;
+  min-width: 0;
+  grid-template-columns: 400px 1fr 1fr;
+  color: #fff;
+  grid-area: hero;
 }
 
 .hero-headline {
+  padding: 51px 67px 0;
   font-size: 6rem;
   font-weight: 400;
   grid-column: 1/4;
-  padding: 51px 67px 0;
 }
 
 .hero-headline span {
@@ -169,42 +169,42 @@ main {
 }
 
 .hero-text {
-  font-weight: 400;
-  grid-column: 1/2;
   margin-top: 57px;
   padding: 0 67px;
+  font-weight: 400;
+  grid-column: 1/2;
 }
 
 .btn-signup {
+  margin: auto auto 51px;
+  padding: 15px 23px;
+  outline: 0;
   font-size: 1.3rem;
   grid-column: 1/2;
-  margin: auto auto 51px;
-  outline: 0;
-  padding: 15px 23px;
 }
 
 .hero-img {
-  background: #232323;
   display: grid;
-  grid-area: hero;
   grid-template-columns: 400px 1fr 1fr;
+  background: #232323;
+  grid-area: hero;
 }
 
 .hero-img img {
   display: block;
-  grid-column: 2/4;
-  height: 100%;
-  object-fit: cover;
-  padding: 0;
   width: 100%;
+  height: 100%;
+  padding: 0;
+  grid-column: 2/4;
+  object-fit: cover;
 }
 
 .copyrights {
+  margin: 60px 0 30px;
+  padding: 0;
   color: #fe142f;
   font-size: 1rem;
   font-weight: bolder;
-  margin: 60px 0 30px;
-  padding: 0;
 }
 
 .hero-section > .btn-signup {
@@ -213,22 +213,22 @@ main {
 
 footer {
   margin: 0 20px;
-  padding-left: 2vw;
   padding-right: 2vw;
+  padding-left: 2vw;
 }
 
 @media screen and (max-width: 992px) {
   .hero-section {
+    display: block;
     border-radius: 0;
     box-shadow: unset;
-    display: block;
   }
 
   .hero-content {
-    background: #fff;
-    color: #000;
     display: block;
     padding: 20px;
+    background: #fff;
+    color: #000;
   }
 
   .hero-content .btn-signup {
@@ -236,14 +236,14 @@ footer {
   }
 
   .hero-headline {
-    font-size: 3rem;
     padding: 0;
+    font-size: 3rem;
     white-space: normal;
   }
 
   .hero-text {
-    font-size: 1.5rem;
     padding: 0;
+    font-size: 1.5rem;
   }
 
   .hero-img {
@@ -267,133 +267,133 @@ footer {
 }
 
 .bground {
-  background-color: rgba(26, 39, 156, 0.4);
   display: none;
-  height: 100%;
-  left: 0;
-  overflow: auto;
   position: fixed;
   top: 0;
+  left: 0;
   width: 100%;
+  height: 100%;
+  background-color: rgba(26, 39, 156, 0.4);
+  overflow: auto;
   z-index: 1;
 }
 
 .content {
-  animation-duration: var(--modal-duration);
-  animation-name: modalopen;
-  background: #232323;
-  border-radius: 10px;
-  color: #fff;
-  margin: 5% auto;
-  max-width: 500px;
-  overflow: hidden;
-  padding-top: 10px;
   position: relative;
   width: 100%;
+  max-width: 500px;
+  margin: 5% auto;
+  padding-top: 10px;
+  animation-name: modalopen;
+  border-radius: 10px;
+  background: #232323;
+  color: #fff;
+  overflow: hidden;
+  animation-duration: var(--modal-duration);
 }
 
 .modal-body {
-  display: grid;
-  grid-template-areas: "modal-body";
   margin: 15px auto;
   padding: 15px 8%;
-  place-content: center;
 }
 
 .modal-body form {
-  grid-area: modal-body;
-  opacity: 1;
+  position: relative;
+}
+
+.modal-body form > * {
   transition: opacity 200ms ease;
+  opacity: 1;
 }
 
 label {
   display: inline-block;
+  margin-bottom: 11px;
   font-family: var(--font-default);
   font-size: 17px;
   font-weight: normal;
-  margin-bottom: 11px;
 }
 
 input {
+  padding: 8px;
   border: 0.8px solid #ccc;
   outline: 0;
-  padding: 8px;
 }
 
 .text-control {
-  border-radius: 8px;
-  font-size: 20px;
+  width: 100%;
   height: 48px;
   margin: 0;
   padding: 8px;
-  width: 100%;
+  border-radius: 8px;
+  font-size: 20px;
 }
 
 .formData[data-error]::after {
-  color: #e54858;
-  content: attr(data-error);
   display: block;
+  margin-top: 7px;
+  margin-bottom: 7px;
+  transition: 0.3s;
+  opacity: 0;
+  color: #e54858;
   font-size: 0.55em;
   line-height: 0.3;
-  margin-bottom: 7px;
-  margin-top: 7px;
-  opacity: 0;
   text-align: right;
-  transition: 0.3s;
+  content: attr(data-error);
 }
 
-.formData[data-error-visible=true]::after {
+.formData[data-error-visible="true"]::after {
   opacity: 1;
 }
 
-.formData[data-error-visible=true] .text-control {
+.formData[data-error-visible="true"] .text-control {
   border: 2px solid #e54858;
 }
 
 input[data-error]::after {
   color: red;
-  content: attr(data-error);
   font-size: 0.8em;
+  content: attr(data-error);
 }
 
 .checkbox-label,
 .checkbox2-label {
+  position: relative;
+  margin-left: 36px;
   font-size: 12px;
   font-weight: normal;
-  margin-left: 36px;
-  position: relative;
 }
 
 .checkbox-label .checkbox-icon,
 .checkbox2-label .checkbox-icon {
+  display: block;
+  position: absolute;
+  top: -1px;
+  left: -30px;
+  width: 20px;
+  height: 20px;
+  transition: 0.3s;
   border: 2px solid #279e7a;
   border-radius: 50%;
-  display: block;
-  height: 20px;
-  left: -30px;
-  position: absolute;
   text-indent: 29px;
-  top: -1px;
-  transition: 0.3s;
   white-space: nowrap;
-  width: 20px;
 }
 
 .checkbox-label .checkbox-icon::after,
 .checkbox2-label .checkbox-icon::after {
-  background-color: #279e7a;
-  border-radius: 50%;
-  content: "";
-  height: 13px;
-  left: 50%;
-  opacity: 0;
   position: absolute;
-  text-indent: 29px;
   top: 50%;
+  left: 50%;
+  width: 13px;
+  height: 13px;
   transform: translate(-50%, -50%);
   transition: 0.3s;
+  border-radius: 50%;
+  background-color: #279e7a;
+  opacity: 0;
+  text-indent: 29px;
   white-space: nowrap;
-  width: 13px;
+  content: "";
 }
 
 .checkbox-input {
@@ -401,16 +401,16 @@ input[data-error]::after {
 }
 
 .checkbox2-label .checkbox-icon::after {
-  background: 0 0;
+  top: 19%;
+  left: 21%;
+  width: 7px;
+  height: 4px;
+  transform: rotate(-55deg);
   border: 2px solid transparent;
+  border-radius: 2px;
   border-bottom-color: #fff;
   border-left-color: #fff;
-  border-radius: 2px;
-  height: 4px;
-  left: 21%;
-  top: 19%;
-  transform: rotate(-55deg);
-  width: 7px;
+  background: 0 0;
 }
 
 .checkbox-input:checked + .checkbox-label .checkbox-icon::after,
@@ -419,9 +419,9 @@ input[data-error]::after {
 }
 
 .checkbox2-label .checkbox-icon {
-  background: #c4c4c4;
   border: 0;
   border-radius: 4px;
+  background: #c4c4c4;
 }
 
 .checkbox-input:checked + .checkbox2-label .checkbox-icon {
@@ -429,24 +429,24 @@ input[data-error]::after {
 }
 
 .close {
-  cursor: pointer;
-  height: 32px;
-  opacity: 1;
   position: absolute;
-  right: 15px;
   top: 15px;
-  transform: scale(0.7);
+  right: 15px;
   width: 32px;
+  height: 32px;
+  transform: scale(0.7);
+  opacity: 1;
+  cursor: pointer;
 }
 
 .close::after,
 .close::before {
+  position: absolute;
+  left: 15px;
+  width: 3px;
+  height: 33px;
   background-color: #fff;
   content: " ";
-  height: 33px;
-  left: 15px;
-  position: absolute;
-  width: 3px;
 }
 
 .close::before {
@@ -464,11 +464,16 @@ input[data-error]::after {
 
 .confirmation-message {
   display: grid;
-  grid-area: modal-body;
-  grid-template-areas: "message";
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  bottom: -5px;
+  left: -5px;
   height: 100%;
   margin: auto;
+  background: #232323;
   text-align: center;
+  grid-template-areas: "message";
 }
 
 .confirmation-message p {
@@ -477,28 +482,28 @@ input[data-error]::after {
 }
 
 .confirmation-message button {
-  align-self: bottom;
   display: block;
-  grid-area: message;
+  align-self: bottom;
   margin: auto auto 2rem;
+  grid-area: message;
 }
 
-.show {
+.confirmation-message.show {
+  transform: translateY(0);
+  transition: opacity 200ms linear, transform 200ms ease-in-out;
   opacity: 1;
-  transform: scale(1);
-  transition: opacity 200ms linear, transform 200ms ease;
 }
 
-.hide {
+.confirmation-message.hide {
+  transform: translateY(100%);
+  transition: opacity 200ms linear, transform 200ms ease-in-out;
   opacity: 0;
-  transform: scale(0);
-  transition: opacity 200ms linear, transform 200ms ease;
 }
 
 @keyframes modalopen {
   from {
-    opacity: 0;
     transform: translateY(-150px);
+    opacity: 0;
   }
 
   to {
