@@ -12,12 +12,7 @@ const modalbg = document.querySelector(".bground");
 const modalBtn = document.querySelectorAll(".modal-btn");
 const hamburger = document.querySelector(".hamburger");
 const closeModalBtn = document.querySelector(".close-modal");
-// select the form
 const uiFormReserve = document.forms.reserve;
-// select the confirmation message
-const uiConfirmationMessage = document.querySelector(".confirmation-message");
-// select the close-form button
-const uiCloseFormBtn = document.querySelector(".close-form");
 
 // Responsive menu
 hamburger.addEventListener("click", editNav);
@@ -112,25 +107,25 @@ const validateLocation = (uiElements) => {
 };
 
 // Reset function
-const resetForm = () => {
-  uiFormReserve.reset();
-  toggleVisible(uiFormReserve);
-  toggleVisible(uiConfirmationMessage);
+const resetForm = (uiForm, uiConfirmation) => {
+  uiForm.reset();
+  toggleVisible(uiConfirmation);
 };
 
 // Exit function
-const exitForm = () => {
+const exitForm = (uiForm, uiConfirmation) => {
+  const uiCloseFormBtn = uiForm.querySelector(".close-form");
   uiCloseFormBtn.addEventListener("click", () => {
-    resetForm();
+    resetForm(uiForm, uiConfirmation);
     closeModal();
   });
 };
 
 // Hide the form and show the confirmation message
-const showConfirmationMessage = () => {
-  toggleVisible(uiFormReserve);
-  toggleVisible(uiConfirmationMessage);
-  exitForm();
+const showConfirmationMessage = (uiForm) => {
+  const uiConfirmation = uiForm.querySelector(".confirmation-message");
+  toggleVisible(uiConfirmation);
+  exitForm(uiForm, uiConfirmation);
 };
 
 // Form validation function
@@ -142,20 +137,25 @@ const validate = ({ first, last, email, birthdate, quantity, location, checkbox1
   // console.log("email " + validateEmail(email));
   // console.log("location " + validateLocation(location));
 
-  return validateLocation(location) && validateHtmlApi(inputs) && validateEmail(email);
+  const isHtmlApiValid = validateHtmlApi(inputs);
+  const isEmailValid = validateEmail(email);
+  const isLocationValid = validateLocation(location);
+
+  return isHtmlApiValid && isEmailValid && isLocationValid;
 };
 
-const handleSubmit = (form) => {
-  const isValid = validate(form);
+const handleSubmit = (uiForm) => {
+  const isValid = validate(uiForm);
+
   if (isValid) {
     // submit
-    showConfirmationMessage();
+    showConfirmationMessage(uiForm);
   }
 };
 
 // Prevent the browser from showing default error and handle the submit process
 uiFormReserve.btnSubmit.addEventListener("click", (e) => {
   e.preventDefault();
-  const form = e.target.form;
-  handleSubmit(form);
+  const uiForm = e.target.form;
+  handleSubmit(uiForm);
 });

@@ -297,11 +297,11 @@ footer {
   padding: 15px 8%;
 }
 
-.modal-body form {
+.form-reserve {
   position: relative;
 }
 
-.modal-body form > * {
+.form-reserve > * {
   transition: opacity 200ms ease;
   opacity: 1;
 }
@@ -465,12 +465,10 @@ input[data-error]::after {
 .confirmation-message {
   display: grid;
   position: absolute;
-  top: -5px;
-  right: -5px;
+  top: 0;
+  right: 0;
   bottom: -5px;
-  left: -5px;
-  height: 100%;
-  margin: auto;
+  left: 0;
   background: #232323;
   text-align: center;
   grid-template-areas: "message";
@@ -489,13 +487,13 @@ input[data-error]::after {
 }
 
 .confirmation-message.show {
-  transform: translateY(0);
+  transform: translateX(0);
   transition: opacity 200ms linear, transform 200ms ease-in-out;
   opacity: 1;
 }
 
 .confirmation-message.hide {
-  transform: translateY(100%);
+  transform: translateX(100%);
   transition: opacity 200ms linear, transform 200ms ease-in-out;
   opacity: 0;
 }
