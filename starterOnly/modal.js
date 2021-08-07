@@ -148,7 +148,7 @@ const handleSubmit = (uiForm) => {
   const isValid = validate(uiForm);
 
   if (isValid) {
-    // submit
+    // submit function should append here
     showConfirmationMessage(uiForm);
   }
 };
