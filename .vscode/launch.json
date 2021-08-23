@@ -1,0 +1,17 @@
+{
+  "configurations": [
+    {
+      "name": "Launch Edge",
+      "request": "launch",
+      "type": "pwa-msedge",
+      "url": "http://127.0.0.1:5500/starterOnly/",
+      "webRoot": "${workspaceFolder}"
+    },
+    {
+      "name": "Launch Microsoft Edge and open the Edge DevTools",
+      "request": "launch",
+      "type": "vscode-edge-devtools.debug",
+      "url": "http://127.0.0.1:5500/starterOnly/" // Provide your project's url to finish configuring
+    }
+  ]
+}

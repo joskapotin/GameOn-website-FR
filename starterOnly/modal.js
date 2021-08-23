@@ -133,10 +133,6 @@ const validate = ({ first, last, email, birthdate, quantity, location, checkbox1
   // Let's use html5 validation API for those inputs
   const inputs = [first, last, birthdate, quantity, checkbox1];
 
-  // console.log("html " + validateHtmlApi(inputs));
-  // console.log("email " + validateEmail(email));
-  // console.log("location " + validateLocation(location));
-
   const isHtmlApiValid = validateHtmlApi(inputs);
   const isEmailValid = validateEmail(email);
   const isLocationValid = validateLocation(location);
