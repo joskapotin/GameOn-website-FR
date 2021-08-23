@@ -56,21 +56,17 @@ const toggleVisible = (uiElement) => {
   }
 };
 
-// html5 validation API function
-const validateHtmlApi = (uiElements) => {
-  // set a validation token for this function and default true
-  let inputsAreValid = true;
+// firstname and lastname validation
+const validateName = (uiElement) => {
+  const nameFormat = /^(?!s)([a-z ,.'-]+){2}$/;
 
-  uiElements.forEach((uiElement) => {
-    if (!uiElement.checkValidity()) {
-      showError(uiElement, "true");
-      inputsAreValid = false;
-    } else {
-      showError(uiElement, "false");
-    }
-  });
+  if (nameFormat.test(uiElement.value)) {
+    showError(uiElement, "false");
+    return true;
+  }
 
-  return inputsAreValid;
+  showError(uiElement, "true");
+  return false;
 };
 
 // Email validation, regular expression found here http://emailregex.com/
@@ -78,6 +74,34 @@ const validateEmail = (uiElement) => {
   const mailformat = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
   if (mailformat.test(uiElement.value)) {
+    showError(uiElement, "false");
+    return true;
+  }
+
+  showError(uiElement, "true");
+  return false;
+};
+
+// Birthdate validation
+const validateBirthdate = (uiElement) => {
+  const dateFormat = /^((?:19|20)[0-9][0-9])-(0?[1-9]|1[012])-(0?[1-9]|[12][0-9]|3[01])$/;
+  const currentDate = Date.parse(new Date());
+  const birthdate = Date.parse(uiElement.value);
+
+  if (dateFormat.test(uiElement.value) && currentDate > birthdate) {
+    showError(uiElement, "false");
+    return true;
+  }
+
+  showError(uiElement, "true");
+  return false;
+};
+
+// Quantity validation
+const validateQuantity = (uiElement) => {
+  const quantityFormat = /^[0-9]*$/;
+
+  if (quantityFormat.test(uiElement.value)) {
     showError(uiElement, "false");
     return true;
   }
@@ -106,6 +130,17 @@ const validateLocation = (uiElements) => {
   return false;
 };
 
+// CGU Validation
+const validateCgu = (uiElement) => {
+  if (uiElement.checked) {
+    showError(uiElement, "false");
+    return true;
+  }
+
+  showError(uiElement, "true");
+  return false;
+};
+
 // Reset function
 const resetForm = (uiForm, uiConfirmation) => {
   uiForm.reset();
@@ -130,14 +165,15 @@ const showConfirmationMessage = (uiForm) => {
 
 // Form validation function
 const validate = ({ first, last, email, birthdate, quantity, location, checkbox1 }) => {
-  // Let's use html5 validation API for those inputs
-  const inputs = [first, last, birthdate, quantity, checkbox1];
-
-  const isHtmlApiValid = validateHtmlApi(inputs);
+  const isFirstnameValid = validateName(first);
+  const isLastnameValid = validateName(last);
   const isEmailValid = validateEmail(email);
+  const isBirthdateValid = validateBirthdate(birthdate);
+  const isQuantityValid = validateQuantity(quantity);
   const isLocationValid = validateLocation(location);
+  const isCguValid = validateCgu(checkbox1);
 
-  return isHtmlApiValid && isEmailValid && isLocationValid;
+  return isFirstnameValid && isLastnameValid && isEmailValid && isBirthdateValid && isQuantityValid && isLocationValid && isCguValid;
 };
 
 const handleSubmit = (uiForm) => {
