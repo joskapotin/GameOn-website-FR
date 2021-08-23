@@ -3,7 +3,7 @@ name: Deploy to Github Pages
 on:
   push:
     branches:
-      - master # Set a branch name to trigger deployment
+      - full-js-validation # Set a branch name to trigger deployment
 
 jobs:
   deploy:
