@@ -481,7 +481,6 @@ input[data-error]::after {
 
 .confirmation-message button {
   display: block;
-  align-self: bottom;
   margin: auto auto 2rem;
   grid-area: message;
 }
